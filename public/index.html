@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#0b0b0c">
+
+  <title>Бір кішкентай ұсыныс 🍿</title>
+
+  <style>
+    /* =========================================================
+       БАПТАУЛАР
+    ========================================================= */
+
+    :root {
+      --bg: #09090a;
+      --bg-soft: #111112;
+      --card: rgba(255,255,255,0.055);
+
+      --text: #f4f1eb;
+      --muted: #aaa7a1;
+      --gold: #d6b98c;
+
+      --border: rgba(255,255,255,0.1);
+
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+
+      width: 100%;
+      min-width: 320px;
+
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 10%,
+          rgba(214,185,140,0.08),
+          transparent 35%
+        ),
+        var(--bg);
+
+      color: var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      line-height: 1.5;
+
+      overscroll-behavior-x: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================================================
+       FILM GRAIN
+    ========================================================= */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+      z-index: 999;
+
+      opacity: 0.035;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    /* =========================================================
+       MAIN
+    ========================================================= */
+
+    main {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    section {
+      width: 100%;
+      min-height: 100svh;
+
+      padding:
+        max(24px, env(safe-area-inset-top))
+        20px
+        max(32px, env(safe-area-inset-bottom))
+        20px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+
+    /* =========================================================
+       INTRO
+    ========================================================= */
+
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 24px;
+
+      background: #080808;
+
+      transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+    }
+
+    #intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .intro-text {
+      text-align: center;
+
+      font-size: 20px;
+      font-weight: 400;
+
+      color: #dedbd5;
+
+      animation: introFade 1.7s ease forwards;
+    }
+
+    @keyframes introFade {
+      0% {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      30% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      75% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* =========================================================
+       COMMON
+    ========================================================= */
+
+    .eyebrow {
+      margin-bottom: 12px;
+
+      color: var(--gold);
+
+      font-size: 12px;
+      font-weight: 600;
+
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 18px;
+
+      font-size: clamp(34px, 10vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+
+      font-size: 30px;
+      line-height: 1.12;
+
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .subtext {
+      max-width: 330px;
+      margin-bottom: 30px;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    #hero {
+      position: relative;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at 50% 45%,
+          rgba(255,255,255,0.045),
+          transparent 42%
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .film-line {
+      width: 46px;
+      height: 1px;
+
+      margin: 0 auto 24px;
+
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 11vw, 46px);
+    }
+
+    .hero-question {
+      color: #d8d4cc;
+      font-size: 17px;
+    }
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      width: 100%;
+    }
+
+    .btn {
+      position: relative;
+
+      width: 100%;
+      min-height: 56px;
+
+      padding: 15px 20px;
+
+      border: 1px solid var(--border);
+      border-radius: 17px;
+
+      background: rgba(255,255,255,0.055);
+
+      color: var(--text);
+
+      font-size: 16px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: #eee9df;
+      color: #171513;
+
+      border-color: #eee9df;
+    }
+
+    .btn-secondary {
+      color: #d2cec7;
+    }
+
+    .btn-gold {
+      border-color: rgba(214,185,140,0.35);
+      background: rgba(214,185,140,0.08);
+    }
+
+    /* =========================================================
+       SUCCESS
+    ========================================================= */
+
+    #success {
+      text-align: center;
+    }
+
+    .success-symbol {
+      width: 68px;
+      height: 68px;
+
+      margin: 0 auto 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.04);
+
+      font-size: 28px;
+    }
+
+    /* =========================================================
+       PLAN
+    ========================================================= */
+
+    .time-card {
+      margin-bottom: 26px;
+      padding: 24px;
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+
+      background: var(--card);
+
+      text-align: center;
+    }
+
+    .time {
+      margin-bottom: 4px;
+
+      color: var(--gold);
+
+      font-size: 46px;
+      font-weight: 700;
+
+      letter-spacing: -0.05em;
+    }
+
+    .time-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 16px;
+
+      border: 1px solid var(--border);
+      border-radius: 17px;
+
+      background: rgba(255,255,255,0.035);
+    }
+
+    .timeline-icon {
+      flex: 0 0 40px;
+
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background: rgba(255,255,255,0.07);
+
+      font-size: 19px;
+    }
+
+    .timeline-text {
+      font-size: 15px;
+    }
+
+    .small-note {
+      margin-top: 18px;
+
+      color: #85827c;
+
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* =========================================================
+       MEMORY
+    ========================================================= */
+
+    #memory {
+      text-align: center;
+    }
+
+    .memory-mark {
+      margin-bottom: 22px;
+
+      font-size: 40px;
+      opacity: 0.8;
+    }
+
+    /* =========================================================
+       GALLERY
+    ========================================================= */
+
+    #gallery {
+      justify-content: flex-start;
+
+      padding-top: 70px;
+    }
+
+    .gallery-header {
+      margin-bottom: 30px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      padding-bottom: 30px;
+    }
+
+    .photo-card {
+      position: relative;
+
+      width: 100%;
+
+      padding: 12px 12px 20px;
+
+      background: #e9e4d9;
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.35);
+
+      transform:
+        rotate(var(--rotation))
+        translateY(25px);
+
+      opacity: 0;
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .photo-card.visible {
+      opacity: 1;
+
+      transform:
+        rotate(var(--rotation))
+        translateY(0);
+    }
+
+    .photo-card img {
+      display: block;
+
+      width: 100%;
+      aspect-ratio: 4 / 5;
+
+      object-fit: cover;
+
+      background: #d6d0c5;
+    }
+
+    .photo-caption {
+      min-height: 22px;
+
+      padding-top: 11px;
+
+      color: #34312c;
+
+      font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* =========================================================
+       MUSIC
+    ========================================================= */
+
+    #music {
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(214,185,140,0.07),
+          transparent 45%
+        );
+    }
+
+    .music-card {
+      padding: 28px 20px;
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+
+      background: rgba(255,255,255,0.045);
+
+      backdrop-filter: blur(10px);
+    }
+
+    .music-disc {
+      width: 82px;
+      height: 82px;
+
+      margin: 0 auto 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(214,185,140,0.3);
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          #222 0 15%,
+          #111 16% 48%,
+          #242424 49% 51%,
+          #101010 52%
+        );
+
+      font-size: 22px;
+    }
+
+    .music-disc.playing {
+      animation: spin 6s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .wave {
+      height: 30px;
+
+      margin: 20px 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 3px;
+    }
+
+    .wave span {
+      width: 3px;
+      height: 8px;
+
+      border-radius: 5px;
+
+      background: var(--gold);
+
+      opacity: 0.4;
+    }
+
+    .music-card.playing .wave span {
+      animation: wave 0.8s ease-in-out infinite alternate;
+    }
+
+    .wave span:nth-child(2) { animation-delay: .1s; }
+    .wave span:nth-child(3) { animation-delay: .2s; }
+    .wave span:nth-child(4) { animation-delay: .3s; }
+    .wave span:nth-child(5) { animation-delay: .15s; }
+    .wave span:nth-child(6) { animation-delay: .25s; }
+    .wave span:nth-child(7) { animation-delay: .1s; }
+
+    @keyframes wave {
+      from {
+        height: 6px;
+      }
+
+      to {
+        height: 26px;
+      }
+    }
+
+    /* =========================================================
+       NEW MEMORY
+    ========================================================= */
+
+    #new-memory {
+      text-align: center;
+    }
+
+    .cinema-icon {
+      margin-bottom: 20px;
+
+      font-size: 42px;
+    }
+
+    /* =========================================================
+       MOVIE
+    ========================================================= */
+
+    #movie {
+      text-align: center;
+    }
+
+    .movie-card {
+      padding: 26px 20px;
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.025)
+      );
+    }
+
+    .movie-card p {
+      margin-bottom: 26px;
+    }
+
+    /* =========================================================
+       FINAL
+    ========================================================= */
+
+    #final {
+      min-height: 100svh;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(214,185,140,0.1),
+          transparent 45%
+        );
+    }
+
+    .final-popcorn {
+      margin-bottom: 22px;
+
+      font-size: 48px;
+    }
+
+    .final-title {
+      font-size: 40px;
+    }
+
+    .final-note {
+      max-width: 330px;
+      margin: 0 auto 28px;
+    }
+
+    .goodbye {
+      margin-top: 28px;
+
+      color: var(--gold);
+
+      font-size: 15px;
+    }
+
+    /* =========================================================
+       LIGHTBOX
+    ========================================================= */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+
+      background: rgba(0,0,0,0.94);
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 85svh;
+
+      object-fit: contain;
+
+      border-radius: 4px;
+    }
+
+    .close-lightbox {
+      position: absolute;
+
+      top: max(20px, env(safe-area-inset-top));
+      right: 20px;
+
+      width: 48px;
+      height: 48px;
+
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.08);
+
+      color: white;
+
+      font-size: 24px;
+    }
+
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       NO BUTTON
+    ========================================================= */
+
+    #noBtn {
+      position: relative;
+      z-index: 10;
+
+      transition:
+        left 0.25s ease,
+        top 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    /* =========================================================
+       SMALL PHONES
+    ========================================================= */
+
+    @media (max-height: 680px) {
+      section {
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 27px;
+      }
+
+      .hero-content {
+        transform: scale(0.94);
+      }
+
+      .success-symbol {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       INTRO
+  ======================================================== -->
+
+  <div id="intro">
+    <div class="intro-text">
+      Саған кішкентай ұсынысым бар...
+    </div>
+  </div>
+
+
+  <main>
+
+    <!-- =====================================================
+         1. HERO
+    ====================================================== -->
+
+    <section id="hero">
+
+      <div class="container hero-content">
+
+        <div class="film-line"></div>
+
+        <div class="eyebrow">
+          Бір кішкентай ұсыныс
+        </div>
+
+        <h1 class="hero-title">
+          Бүгін киноға<br>
+          барып қайтсақ қалай? 🍿
+        </h1>
+
+        <p class="hero-question">
+          Жай ғана жақсы фильм және жақсы кеш :)
+        </p>
+
+        <div class="buttons">
+
+          <button
+            class="btn btn-primary"
+            id="yesBtn"
+          >
+            Иә, барайық
+          </button>
+
+          <button
+            class="btn btn-secondary"
+            id="noBtn"
+          >
+            Жоқ
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         2. SUCCESS
+    ====================================================== -->
+
+    <section id="success">
+
+      <div class="container reveal">
+
+        <div class="success-symbol">
+          ✓
+        </div>
+
+        <div class="eyebrow">
+          Келістік
+        </div>
+
+        <h2>
+          Онда келісілді :)
+        </h2>
+
+        <p class="subtext">
+          Бүгін кешке сағат <strong>21:00</strong> қалай?
+        </p>
+
+        <button
+          class="btn btn-primary"
+          data-next="plan"
+        >
+          Келесі →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         3. PLAN
+    ====================================================== -->
+
+    <section id="plan">
+
+      <div class="container reveal">
+
+        <div class="eyebrow">
+          Біздің жоспар
+        </div>
+
+
+
+        <div class="time-card">
+
+          <div class="time">
+            21:00
+          </div>
+
+          <div class="time-label">
+            Кездесетін уақыт
+          </div>
+
+        </div>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+
+            <div class="timeline-icon">
+              📍
+            </div>
+
+            <div class="timeline-text">
+              Кездесеміз
+            </div>
+
+          </div>
+
+          <div class="timeline-item">
+
+            <div class="timeline-icon">
+              🎬
+            </div>
+
+            <div class="timeline-text">
+              Киноға барамыз
+            </div>
+
+          </div>
+
+          <div class="timeline-item">
+
+            <div class="timeline-icon">
+              🍿
+            </div>
+
+            <div class="timeline-text">
+              Попкорн + жақсы фильм
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="small-note">
+          Қалғанын сол жерде шешерміз :)
+        </div>
+        <button
+            class="btn btn-primary section-button"
+            data-next="memory"
+        >
+        Келесі →
+        </button>
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         4. MEMORY
+    ====================================================== -->
+
+    <section id="memory">
+
+      <div class="container reveal">
+
+        <div class="memory-mark">
+          🎞️
+        </div>
+
+        <div class="eyebrow">
+          Бір сәт
+        </div>
+
+        <h2>
+          Бір кезде бірге өткізген сәттеріміз бар ғой...
+        </h2>
+
+        <p>
+          Сол сәттерді еске түсіріп,
+          жаңа бір кішкентай естелік қосайық.
+        </p>
+
+        <button
+          class="btn btn-gold"
+          data-next="gallery"
+        >
+          Естеліктерді көру →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         5. GALLERY
+    ====================================================== -->
+
+    <section id="gallery">
+
+      <div class="container">
+
+        <div class="gallery-header reveal">
+
+          <div class="eyebrow">
+            Естеліктер
+          </div>
+
+          <h2>
+            Бірнеше жақсы сәт...
+          </h2>
+
+          <p>
+            Кейбір сәттерді қайта көрген жақсы :)
+          </p>
+
+        </div>
+
+        <div
+          class="gallery"
+          id="galleryContainer"
+        ></div>
+
+        <button
+          class="btn btn-gold"
+          data-next="music"
+        >
+          Бір әнді тыңдайық →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         6. MUSIC
+    ====================================================== -->
+
+    <section id="music">
+
+      <div class="container reveal">
+
+        <div class="eyebrow">
+          Саған арналған ән
+        </div>
+
+        <h2>
+          Бір ән бар еді...
+        </h2>
+
+        <div class="music-card" id="musicCard">
+
+          <div
+            class="music-disc"
+            id="musicDisc"
+          >
+            ♪
+          </div>
+
+          <p>
+            Inkarim-ai — Серик Гамза
+          </p>
+
+          <div class="wave">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+          </div>
+
+          <button
+            class="btn btn-primary"
+            id="musicBtn"
+          >
+            ▶ Әнді тыңдау
+          </button>
+
+        </div>
+<button
+  class="btn btn-primary section-button"
+  data-next="new-memory"
+>
+  Келесі →
+</button>
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         7. NEW MEMORY
+    ====================================================== -->
+
+    <section id="new-memory">
+
+      <div class="container reveal">
+
+        <div class="cinema-icon">
+          🎬
+        </div>
+
+        <div class="eyebrow">
+          Бүгін
+        </div>
+
+        <h2>
+          Ал бүгін жаңа бір естелік жасаймыз ба?
+        </h2>
+
+        <p class="subtext">
+          Жай ғана кино.<br>
+          Жай ғана жақсы кеш.
+        </p>
+
+        <button
+          class="btn btn-primary"
+          data-next="movie"
+        >
+          Кино таңдайық 🎬
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         8. MOVIE
+    ====================================================== -->
+
+    <section id="movie">
+
+      <div class="container reveal">
+
+        <div class="movie-card">
+
+          <div class="eyebrow">
+            Келесі қадам
+          </div>
+
+          <h2>
+              Фильмді өзің таңда.
+            Мен қарсы емеспін :) 🎬
+          </h2>
+
+
+          <button
+            class="btn btn-primary"
+            id="freedomBtn"
+          >
+            Freedom Cinema афишасын ашу
+          </button>
+
+          <p
+            id="freedomError"
+            style="
+              display:none;
+              margin-top:14px;
+              font-size:13px;
+              color:#c8a97e;
+            "
+          >
+            Сілтемені кодтағы баптаулардан қосу керек.
+          </p>
+
+        </div>
+<button
+  class="btn btn-primary section-button"
+  data-next="final"
+>
+  Келесі →
+</button>
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         9. FINAL
+    ====================================================== -->
+
+    <section id="final">
+
+      <div class="container reveal">
+
+        <div class="final-popcorn">
+          🍿
+        </div>
+
+        <div class="eyebrow">
+          Онда кездестік
+        </div>
+
+        <h1 class="final-title">
+          Бүгін, 21:00
+        </h1>
+
+        <p class="final-note">
+          <br><br>
+          Артық жоспар жоқ.
+          Жай ғана кино, попкорн және жақсы кеш.
+          Ұнаған фильмді таңда да, маған сілтемесін немесе скринін жібере сал :) 🎬
+
+        </p>
+
+        <div class="goodbye">
+          Көріскенше :)
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       LIGHTBOX
+  ======================================================== -->
+
+  <div
+    class="lightbox"
+    id="lightbox"
+  >
+
+    <button
+      class="close-lightbox"
+      id="closeLightbox"
+    >
+      ×
+    </button>
+
+    <img
+      id="lightboxImage"
+      src=""
+      alt=""
+    >
+
+  </div>
+
+
+  <script>
+
+    /* =========================================================
+       БАПТАУЛАР
+    ========================================================= */
+
+
+history.scrollRestoration = "manual";
+
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
+
+    const FREEDOM_CINEMA_URL = "https://ticketon.kz/almaty";
+
+    const PHOTOS = [
+      {
+        src: "photos/photo1.jpg",
+        caption: ""
+      },
+      {
+        src: "photos/photo2.jpg",
+        caption: ""
+      },
+      {
+        src: "photos/photo3.jpg",
+        caption: ""
+      },
+      {
+        src: "photos/photo4.jpg",
+        caption: ""
+      }
+    ];
+
+
+    /* =========================================================
+       INTRO
+    ========================================================= */
+
+    const intro = document.getElementById("intro");
+
+    setTimeout(() => {
+      intro.classList.add("hidden");
+    }, 1800);
+
+
+    /* =========================================================
+       SMOOTH NAVIGATION
+    ========================================================= */
+
+    function goTo(id) {
+
+      const element = document.getElementById(id);
+
+      if (!element) return;
+
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+
+    document.querySelectorAll("[data-next]").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        goTo(button.dataset.next);
+
+      });
+
+    });
+
+
+    /* =========================================================
+       YES BUTTON
+    ========================================================= */
+
+    document
+      .getElementById("yesBtn")
+      .addEventListener("click", () => {
+
+        goTo("success");
+
+      });
+
+
+    /* =========================================================
+       NO BUTTON
+       Тек телефонға арналған қауіпсіз қозғалыс
+    ========================================================= */
+
+    const noBtn = document.getElementById("noBtn");
+
+    const noMessages = [
+      "Шынымен бе? 😄",
+      "Ойланып көрші :)",
+      "Кино ғана ғой 🍿",
+      "Соңғы мүмкіндік 😌"
+    ];
+
+    let noIndex = 0;
+
+    function moveNoButton() {
+
+      const padding = 18;
+
+      const buttonWidth = noBtn.offsetWidth;
+      const buttonHeight = noBtn.offsetHeight;
+
+      const maxX =
+        Math.max(
+          padding,
+          window.innerWidth - buttonWidth - padding
+        );
+
+      const maxY =
+        Math.max(
+          100,
+          window.innerHeight - buttonHeight - 80
+        );
+
+      const x =
+        padding +
+        Math.random() *
+        Math.max(1, maxX - padding);
+
+      const y =
+        100 +
+        Math.random() *
+        Math.max(1, maxY - 100);
+
+      noBtn.style.position = "fixed";
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+
+      noBtn.style.zIndex = "100";
+
+      noBtn.textContent =
+        noMessages[
+          noIndex % noMessages.length
+        ];
+
+      noIndex++;
+
+    }
+
+
+    noBtn.addEventListener(
+      "touchstart",
+      function(event) {
+
+        event.preventDefault();
+
+        moveNoButton();
+
+      },
+      {
+        passive: false
+      }
+    );
+
+
+    noBtn.addEventListener(
+      "click",
+      function(event) {
+
+        event.preventDefault();
+
+        moveNoButton();
+
+      }
+    );
+
+
+    /* =========================================================
+       GALLERY
+    ========================================================= */
+
+    const galleryContainer =
+      document.getElementById("galleryContainer");
+
+    const rotations = [
+      "-2.2deg",
+      "1.8deg",
+      "-1.4deg",
+      "2.4deg",
+      "-2deg",
+      "1.5deg",
+      "-1.8deg",
+      "2deg"
+    ];
+
+
+    PHOTOS.forEach((photo, index) => {
+
+      const card =
+        document.createElement("article");
+
+      card.className = "photo-card";
+
+      card.style.setProperty(
+        "--rotation",
+        rotations[index % rotations.length]
+      );
+
+      const image =
+        document.createElement("img");
+
+      image.src = photo.src;
+
+      image.alt =
+        photo.caption ||
+        `Естелік ${index + 1}`;
+
+      image.loading = "lazy";
+
+
+      image.addEventListener(
+        "click",
+        () => {
+
+          openLightbox(photo.src);
+
+        }
+      );
+
+
+      image.addEventListener(
+        "error",
+        () => {
+
+          card.remove();
+
+        }
+      );
+
+
+      const caption =
+        document.createElement("div");
+
+      caption.className =
+        "photo-caption";
+
+      caption.textContent =
+        photo.caption || "";
+
+
+      card.appendChild(image);
+      card.appendChild(caption);
+
+      galleryContainer.appendChild(card);
+
+    });
+
+
+    /* =========================================================
+       PHOTO REVEAL
+    ========================================================= */
+
+    const photoObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.15
+        }
+      );
+
+
+    document
+      .querySelectorAll(".photo-card")
+      .forEach(card => {
+
+        photoObserver.observe(card);
+
+      });
+
+
+    /* =========================================================
+       GENERAL REVEAL
+    ========================================================= */
+
+    const revealObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.15
+        }
+      );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(element => {
+
+        revealObserver.observe(element);
+
+      });
+
+
+    /* =========================================================
+       LIGHTBOX
+    ========================================================= */
+
+    const lightbox =
+      document.getElementById("lightbox");
+
+    const lightboxImage =
+      document.getElementById("lightboxImage");
+
+    function openLightbox(src) {
+
+      lightboxImage.src = src;
+
+      lightbox.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+    }
+
+
+    function closeLightbox() {
+
+      lightbox.classList.remove("active");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    document
+      .getElementById("closeLightbox")
+      .addEventListener(
+        "click",
+        closeLightbox
+      );
+
+
+    lightbox.addEventListener(
+      "click",
+      event => {
+
+        if (event.target === lightbox) {
+
+          closeLightbox();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (event.key === "Escape") {
+
+          closeLightbox();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       MUSIC
+    ========================================================= */
+
+    const audio =
+      new Audio("music/song.mp3");
+
+    const musicBtn =
+      document.getElementById("musicBtn");
+
+    const musicCard =
+      document.getElementById("musicCard");
+
+    const musicDisc =
+      document.getElementById("musicDisc");
+
+
+    musicBtn.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          if (audio.paused) {
+
+            await audio.play();
+
+            musicCard.classList.add("playing");
+            musicDisc.classList.add("playing");
+
+            musicBtn.textContent =
+              "Ⅱ Музыканы тоқтату";
+
+          } else {
+
+            audio.pause();
+
+            musicCard.classList.remove("playing");
+            musicDisc.classList.remove("playing");
+
+            musicBtn.textContent =
+              "▶ Әнді тыңдау";
+
+          }
+
+        } catch (error) {
+
+          musicBtn.textContent =
+            "Әнді ойнату мүмкін болмады";
+
+        }
+
+      }
+    );
+
+
+    audio.addEventListener(
+      "ended",
+      () => {
+
+        musicCard.classList.remove("playing");
+        musicDisc.classList.remove("playing");
+
+        musicBtn.textContent =
+          "▶ Әнді тыңдау";
+
+      }
+    );
+
+
+    /* =========================================================
+       FREEDOM CINEMA
+    ========================================================= */
+
+    const freedomBtn =
+      document.getElementById("freedomBtn");
+
+    const freedomError =
+      document.getElementById("freedomError");
+
+
+    freedomBtn.addEventListener(
+      "click",
+      () => {
+
+        if (
+          !FREEDOM_CINEMA_URL ||
+          FREEDOM_CINEMA_URL === "https://ticketon.kz/cinema"
+        ) {
+
+          freedomError.style.display =
+            "block";
+
+          return;
+
+        }
+
+
+        window.open(
+          FREEDOM_CINEMA_URL,
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       STOP MUSIC WHEN LEAVING PAGE
+    ========================================================= */
+
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+
+        if (document.hidden && !audio.paused) {
+
+          audio.pause();
+
+          musicCard.classList.remove("playing");
+          musicDisc.classList.remove("playing");
+
+          musicBtn.textContent =
+            "▶ Әнді тыңдау";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
