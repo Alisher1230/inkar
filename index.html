@@ -122,7 +122,6 @@ section {
 
   overflow: hidden;
 }
-
     .container {
       width: 100%;
       max-width: 430px;
@@ -277,6 +276,11 @@ section {
       color: #d8d4cc;
       font-size: 17px;
     }
+
+.question-actions {
+  position: relative;
+  min-height: 140px;
+}
 
     /* =========================================================
        BUTTONS
@@ -898,11 +902,11 @@ section {
           </button>
 
           <button
-            class="btn btn-secondary"
-            id="noBtn"
-          >
-            Жоқ
-          </button>
+  class="btn btn-secondary"
+  id="noBtn"
+>
+  Жоқ
+</button>
 
         </div>
 
@@ -1410,90 +1414,41 @@ window.addEventListener("load", () => {
        Тек телефонға арналған қауіпсіз қозғалыс
     ========================================================= */
 
-    const noBtn = document.getElementById("noBtn");
+const noBtn = document.getElementById("noBtn");
 
-    const noMessages = [
-      "Шынымен бе? 😄",
-      "Ойланып көрші :)",
-      "Кино ғана ғой 🍿",
-      "Соңғы мүмкіндік 😌"
-    ];
+const noMessages = [
+  "Шынымен бе? 😄",
+  "Ойланып көрші :)",
+  "Кино ғана ғой 🍿",
+  "Соңғы мүмкіндік 😌"
+];
 
-    let noIndex = 0;
+let noIndex = 0;
 
-    function moveNoButton() {
+function moveNoButton() {
+  const container = noBtn.parentElement;
 
-      const padding = 18;
+  const padding = 10;
 
-      const buttonWidth = noBtn.offsetWidth;
-      const buttonHeight = noBtn.offsetHeight;
+  const maxX = container.clientWidth - noBtn.offsetWidth - padding;
+  const maxY = container.clientHeight - noBtn.offsetHeight - padding;
 
-      const maxX =
-        Math.max(
-          padding,
-          window.innerWidth - buttonWidth - padding
-        );
+  const x = padding + Math.random() * Math.max(0, maxX - padding);
+  const y = padding + Math.random() * Math.max(0, maxY - padding);
 
-      const maxY =
-        Math.max(
-          100,
-          window.innerHeight - buttonHeight - 80
-        );
+  noBtn.style.position = "absolute";
+  noBtn.style.left = `${x}px`;
+  noBtn.style.top = `${y}px`;
 
-      const x =
-        padding +
-        Math.random() *
-        Math.max(1, maxX - padding);
+  noBtn.textContent = noMessages[noIndex % noMessages.length];
 
-      const y =
-        100 +
-        Math.random() *
-        Math.max(1, maxY - 100);
+  noIndex++;
+}
 
-      noBtn.style.position = "fixed";
-
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-
-      noBtn.style.zIndex = "100";
-
-      noBtn.textContent =
-        noMessages[
-          noIndex % noMessages.length
-        ];
-
-      noIndex++;
-
-    }
-
-
-    noBtn.addEventListener(
-      "touchstart",
-      function(event) {
-
-        event.preventDefault();
-
-        moveNoButton();
-
-      },
-      {
-        passive: false
-      }
-    );
-
-
-    noBtn.addEventListener(
-      "click",
-      function(event) {
-
-        event.preventDefault();
-
-        moveNoButton();
-
-      }
-    );
-
-
+noBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  moveNoButton();
+});
     /* =========================================================
        GALLERY
     ========================================================= */
