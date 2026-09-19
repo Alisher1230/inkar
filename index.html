@@ -104,20 +104,24 @@
       overflow: hidden;
     }
 
-    section {
-      width: 100%;
-      min-height: 100svh;
+section {
+  position: relative;
 
-      padding:
-        max(24px, env(safe-area-inset-top))
-        20px
-        max(32px, env(safe-area-inset-bottom))
-        20px;
+  width: 100%;
+  min-height: 100svh;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+  padding:
+    max(24px, env(safe-area-inset-top))
+    20px
+    max(90px, env(safe-area-inset-bottom))
+    20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  overflow: hidden;
+}
 
     .container {
       width: 100%;
